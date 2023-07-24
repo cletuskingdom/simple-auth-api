@@ -15,7 +15,7 @@ const index = (req: Request, res: Response) => {
 	});
 };
 
-const login = async (req: Request, res: Response) => {
+const register = async (req: Request, res: Response) => {
 	const { name, email, phone, password } = req.body;
 
 	try {
@@ -60,5 +60,5 @@ const login = async (req: Request, res: Response) => {
 
 // Export the controller functions
 module.exports = {
-	index, login
+	index, register
 };
