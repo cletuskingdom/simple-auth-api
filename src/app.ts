@@ -13,11 +13,8 @@ app.use(express.json());
 // STRUCTURE FOR INTERFACE
 app.use(express.static("assets")); // this lets them know  where to find all your asset(fiels, css, fonts... etc)
 
-// Set template engine
-app.set("view engine", "ejs");
-
 // Route prefix - this points to all my routes
-app.use("", require("./routes/routes"));
+app.use("/api/v1", require("./routes/apiRoutes"));
 
 // Start the server
 app.listen(port, () => {
