@@ -7,12 +7,20 @@ const handleErrors = (err: any) => {
 	console.log(err.message, err.code);
 	let errors: any = { email: '', password: '', name: '', phone: '' };
 
+	// duplicate error code
+	if (err.code === 11000) {
+		errors.email = "Email exist";
+		return errors;
+	}
+
 	// vlaidation errors
 	if (err.message.includes('User validation failed')) {
 		Object.values(err.errors).forEach(({ properties }: any) => {
 			errors[properties.path] = properties.message;
 		});
 	}
+
+	return errors;
 }
 
 const index = (req: Request, res: Response) => {
@@ -40,7 +48,7 @@ const register = async (req: Request, res: Response) => {
 		});
 	} catch (err: any) {
 		const errors = handleErrors(err);
-		res.status(400).send("error, user not created");
+		res.status(400).json({ errors });
 	}
 };
 
