@@ -6,4 +6,7 @@ const router = express.Router();
 // Welcome route
 router.get("/", homeController.index);
 
+// Login route
+router.get("/login", homeController.login);
+
 module.exports = router;

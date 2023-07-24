@@ -12,7 +12,11 @@ const index = (req: Request, res: Response) => {
 	});
 };
 
+const login = (req: Request, res: Response) => {
+
+};
+
 // Export the controller functions
 module.exports = {
-	index
+	index, login
 };
