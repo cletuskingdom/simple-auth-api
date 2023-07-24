@@ -1,10 +1,9 @@
 {
   "name": "auth_api",
   "version": "1.0.0",
-	"description": "",
+	"description": "An authenticated api",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "rimraf ./build && tsc",
 		"dev": "nodemon",
 		"start": "npm run build && node ./build/index.js"
