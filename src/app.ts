@@ -1,5 +1,8 @@
 import dotenv from "dotenv";
 import express from "express";
+import bodyParser from 'body-parser'; // Optional, but helpful for parsing request bodies
+
+
 // import mongoose from "mongoose";
 dotenv.config({ path: __dirname + "/../config/.env" });
 
