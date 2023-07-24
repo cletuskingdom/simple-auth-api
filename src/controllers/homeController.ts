@@ -1,7 +1,19 @@
 import { Request, Response } from "express";
 
 const jwt = require('jsonwebtoken');
-const User = require('./../models/users')
+const User = require('./../models/users');
+
+const handleErrors = (err: any) => {
+	console.log(err.message, err.code);
+	let error = { email: '', password: '', name: '', phone: '' };
+
+	// vlaidation errors
+	if (err.message.includes('User validation failed')) {
+		Object.values(err.errors).forEach((error: any) => {
+			console.log(error.properties)
+		})
+	}
+}
 
 const index = (req: Request, res: Response) => {
 	res.status(200).json({
@@ -26,12 +38,9 @@ const register = async (req: Request, res: Response) => {
 			"response_message": "Successful",
 			"data": user
 		});
-	} catch (error: any) {
-
-		res.status(404).json({
-			"response_code": "404",
-			"response_message": error.message
-		});
+	} catch (err: any) {
+		const errors = handleErrors(err);
+		res.status(400).send("error, user not created");
 	}
 };
 
