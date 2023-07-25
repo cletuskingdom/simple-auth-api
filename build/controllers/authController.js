@@ -110,7 +110,8 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const users = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user_id = req.user.id; // here is the user_id of the logged in user
-    const user = yield User.findById(user_id);
+    // const user = await User.findById(user_id);
+    const user = yield User.find({});
     if (user) {
         res.status(200).json({
             "response_code": "200",
