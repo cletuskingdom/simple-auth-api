@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 2000;
 
 const DB_URL =
-	process.env.NODE_ENV != "production"
+	process.env.NODE_ENV === "production"
 		? process.env.PRODUCTION_DB_URL
 		: process.env.LOCAL_DB_URL;
 
