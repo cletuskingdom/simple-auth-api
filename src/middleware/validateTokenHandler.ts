@@ -2,7 +2,7 @@ const JWT = require("jsonwebtoken");
 import { Request, Response } from "express";
 
 // Middleware to verify the JWT token
-const validateToken = async (req: Request, res: Response, next: any) => {
+const validateToken = async (req: any, res: Response, next: any) => {
     const token = req.header('Authorization');
 
     if (!token) {
@@ -21,7 +21,7 @@ const validateToken = async (req: Request, res: Response, next: any) => {
         }
 
         // Token is valid, store the decoded payload for later use
-        // req.user = decodedToken;
+        req.user = decodedToken;
         next();
     });
 }
