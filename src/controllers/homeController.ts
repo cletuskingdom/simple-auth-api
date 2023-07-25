@@ -26,7 +26,7 @@ const handleErrors = (err: any) => {
 	return errors;
 }
 
-const maxAge = 3 * 24 * 60 * 60; // Three days in seconds
+const maxAge = '5h'; // Token should expire in 5hrs
 const createToken = (id: number) => {
 	return JWT.sign({ id }, process.env.TOKEN_SECRET, {
 		expiresIn: maxAge
@@ -88,14 +88,15 @@ const login = async (req: Request, res: Response) => {
 
 	// comfirm the password is correct with hashed password
 	if (user && bcrypt.compare(password, user.password)) {
-		const accessToken = JWT.sign({
-			user: {
-				name: user.name,
-				email: user.email,
-				id: user.id
-			},
-		}, process.env.TOKEN_SECRET,
-			{ expiresIn: "5h" }) // setting the token to expires in 5hrs
+		// const accessToken = JWT.sign({
+		// 	user: {
+		// 		name: user.name,
+		// 		email: user.email,
+		// 		id: user.id
+		// 	},
+		// }, process.env.TOKEN_SECRET,
+		// 	{ expiresIn: "5h" })
+		const accessToken = createToken(user.id);
 		res.status(200).json({
 			"response_code": "200",
 			"response_message": "Login successful",
