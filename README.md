@@ -17,6 +17,7 @@ To access protected endpoints, you need to include a Bearer token in the Authori
 ### User Registration
 
 Create a new user by sending a POST request to `/users/register`.
+
 **Request:**
 
 ```http
