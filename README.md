@@ -21,10 +21,30 @@ Create a new user by sending a POST request to `/users/register`.
 **Request:**
 
 ```http
-POST /users/profile
-Authorization: Bearer `your_jwt_token`
+POST /users/register
+Content-Type: application/json
 
+{
+  "username": "john_doe",
+  "email": "john@example.com",
+  "password": "secretpassword"
+}
+```
+
+**Response:**
+
+```json
+{
+	"success": true,
+	"message": "User registered successfully.",
+	"user": {
+		"id": "user_id",
+		"username": "john_doe",
+		"email": "john@example.com"
+	}
+}
+```
 
 ## Error Handling
+
 The API returns appropriate HTTP status codes and error messages in case of any issues. Refer to the responses to determine the success of each request and handle errors accordingly.
-```
